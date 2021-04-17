@@ -30,7 +30,7 @@ struct Node* deleteDuplication(struct Node* pHead) {
 	//对数组内的元素去除重复的结点值
 	int front = 0, end = 1;
 	while (end <= count){
-		//小细节：<=否则当链表结点val都相同时，会留下一个元素
+		//小细节：<= 否则当链表结点val都相同时，会留下一个元素
 		if (arr[end] == arr[front]){
 			for (int j = end + 1; j<count; j++){
 				//若end=1，count=1,则arr[0]=arr[2]，并不会把arr[1]赋给arr[0]
@@ -53,8 +53,11 @@ struct Node* deleteDuplication(struct Node* pHead) {
 	cur = pHead;
 
 	i = 0;
-	//若数组有效长度为0，则直接返回NULL；
+
+	//若数组有效长度为0，则表明没有有效元素，直接返回NULL；
 	if (count <= 0){
+		free(arr);
+		free(guard);
 		return NULL;
 	}
 	while (cur && count){
@@ -78,5 +81,6 @@ struct Node* deleteDuplication(struct Node* pHead) {
 	cur = guard;
 	guard = guard->next;
 	free(cur);
+	free(arr);
 	return guard;
 }
