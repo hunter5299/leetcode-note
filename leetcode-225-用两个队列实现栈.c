@@ -81,7 +81,7 @@ int myStackPop(MyStack* obj) {
 	int ret;
 	//若队列q1中有元素，则表明元素入栈在q1,q2是空
 	if (obj->q1->front != NULL){
-		//转移q1中的元素到q2，直到只剩下q2的队尾
+		//转移q1中的元素到q2，直到只剩下q1的队尾
 		while (obj->q1->front != obj->q1->rear){
 			//若q2中无元素，则q2的队头队尾指向同一个结点
 			if (obj->q2->front == NULL){
@@ -91,7 +91,7 @@ int myStackPop(MyStack* obj) {
 				obj->q2->rear->next = NULL;
 			}
 			else{
-				obj->q2->rear->next = obj->q2->front;
+				obj->q2->rear->next = obj->q1->front;
 
 
 				obj->q2->front = obj->q2->front->next;
